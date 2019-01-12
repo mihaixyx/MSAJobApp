@@ -49,6 +49,9 @@ public class ProfileEdit extends AppCompatActivity implements View.OnClickListen
                 System.out.println(dataSnapshot);
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     UserInfo uInfo = new UserInfo();
+                    if(ds.child(userID).getValue(UserInfo.class) == null){
+                        break;
+                    }
                     uInfo.setFullName(ds.child(userID).getValue(UserInfo.class).getFullName());
                     uInfo.setShortBio(ds.child(userID).getValue(UserInfo.class).getShortBio());
                     mFullNameField.setText(uInfo.getFullName());
@@ -85,7 +88,6 @@ public class ProfileEdit extends AppCompatActivity implements View.OnClickListen
             }
 
         }
-
         if(i == R.id.buttonBackToMain){
             finish();
         }
